@@ -5,31 +5,31 @@ const externalLinks = [
   {
     title: 'Namaste Grocery',
     description: 'Social media content & reels for local desi grocery store',
-    url: 'https://www.instagram.com/reel/C7k6ZjzM3Am/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+    url: 'https://www.instagram.com/reel/C7k6ZjzM3Am/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D',
     type: 'Instagram Reel',
   },
   {
     title: 'Ananthabhyas',
     description: 'Instagram brand profile & content management',
-    url: 'https://www.instagram.com/ananthabhyas?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+    url: 'https://www.instagram.com/ananthabhyas?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D',
     type: 'Instagram Profile',
   },
   {
     title: 'Nonucare',
     description: 'Digital presence & social media management',
-    url: 'https://www.instagram.com/nonucare?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+    url: 'https://www.instagram.com/nonucare?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D',
     type: 'Instagram Profile',
   },
   {
     title: 'Design Portfolio',
     description: 'Collection of graphic designs and brand materials',
-    url: 'https://drive.google.com/drive/folders/1zQLYwhzigNy9tFXFzMi5LgS8m4vySE9r?usp=sharing',
+    url: 'https://drive.google.com/drive/folders/1zQLYwhzigNy9tFXFzMi5LgS8m4vySE9r',
     type: 'Google Drive',
   },
   {
     title: 'Thumbnail Designs',
     description: 'YouTube thumbnail designs and visual assets',
-    url: 'https://drive.google.com/drive/folders/1zQLYwhzigNy9tFXFzMi5LgS8m4vySE9r?usp=sharing',
+    url: 'https://drive.google.com/drive/folders/14LrGzlb7ahLYl_SSTM8-Hg0j6d3cwb-g',
     type: 'Google Drive',
   },
 ];
