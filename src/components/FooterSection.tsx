@@ -1,0 +1,27 @@
+import { motion } from 'framer-motion';
+
+export default function FooterSection() {
+  return (
+    <footer className="section-padding border-t border-border/50">
+      <div className="max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-display font-800 text-3xl md:text-4xl text-foreground mb-4">
+            Let's create something <span className="text-gradient">awesome</span> together!
+          </h2>
+          <p className="text-muted-foreground max-w-lg mx-auto mb-8">
+            Ready to elevate your brand? Get in touch and let's craft your next big story.
+          </p>
+          <div className="glow-line w-16 mx-auto mb-8" />
+          <p className="text-muted-foreground/60 text-sm font-display tracking-wider uppercase">
+            © {new Date().getFullYear()} Craft Media & Marketing
+          </p>
+        </motion.div>
+      </div>
+    </footer>
+  );
+}
