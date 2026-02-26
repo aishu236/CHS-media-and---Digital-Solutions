@@ -1,11 +1,17 @@
 import { motion } from 'framer-motion';
+import brandLogos from '@/assets/brand-logos.png';
 
 const brands = [
-  { name: 'Namaste Grocery', type: 'Social Media & Content', link: 'https://www.instagram.com/reel/C7k6ZjzM3Am/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
-  { name: 'Ananthabhyas', type: 'Brand Production', link: 'https://www.instagram.com/ananthabhyas?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
-  { name: 'Nonucare', type: 'Digital Marketing', link: 'https://www.instagram.com/nonucare?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+  { name: 'Conflkt Magazine', type: 'Fashion Show Production', link: '#works' },
   { name: 'Wellversed', type: 'Event Production', link: '#works' },
-  { name: 'ConflktMagazine', type: 'Fashion Show Production', link: '#works' },
+  { name: 'Ananthabhyas', type: 'Brand Production', link: 'https://www.instagram.com/ananthabhyas?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+  { name: 'ICN', type: 'Media Production', link: '#works' },
+  { name: 'Polam', type: 'Brand Identity', link: '#works' },
+  { name: 'Intaa Interiors', type: 'Social Media Marketing', link: '#works' },
+  { name: 'Nonucare', type: 'Digital Marketing', link: 'https://www.instagram.com/nonucare?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+  { name: 'Deeraj Interiors', type: 'Content Production', link: '#works' },
+  { name: 'Sniva', type: 'Brand & Content', link: '#works' },
+  { name: 'Namaste Grocery', type: 'Social Media & Content', link: 'https://www.instagram.com/reel/C7k6ZjzM3Am/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
 ];
 
 const containerVariants = {
@@ -37,6 +43,16 @@ export default function BrandWorkSection() {
           <p className="text-primary font-display tracking-[0.2em] uppercase text-xs mb-3">Portfolio</p>
           <h2 className="font-display font-800 text-4xl md:text-5xl text-foreground">Brand Work</h2>
           <div className="glow-line w-24 mt-6" />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mb-14 glass-card p-6 rounded-xl overflow-hidden"
+        >
+          <img src={brandLogos} alt="Brands we've worked with" className="w-full h-auto object-contain opacity-90" />
         </motion.div>
 
         <motion.div
