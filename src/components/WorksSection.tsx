@@ -1,17 +1,36 @@
 import { motion } from 'framer-motion';
+import { ExternalLink, Play } from 'lucide-react';
 
 const works = [
   {
     title: '🎵 Songs Production',
-    description: 'From concept to completion, our team handled the entire production of a rap music video — including pre-production planning, shooting, editing, and VFX. We crafted dynamic visuals and seamless post-production effects to complement the rhythm and energy of the track.',
+    description: 'From concept to completion, our team handled the entire production of rap music videos — including pre-production planning, shooting, editing, and VFX.',
+    links: [
+      { label: 'DEVA - DHOORANGUNDU', url: 'https://www.youtube.com/watch?v=nhIMW1szms8', type: 'YouTube' },
+      { label: 'Choostu Undu - LADY SKAVYA', url: 'https://www.youtube.com/watch?v=jO_CHsaHpA8', type: 'YouTube' },
+      { label: 'Maryaada Remix - Lady Skavya', url: 'https://www.youtube.com/watch?v=M15ZRysNIv0', type: 'YouTube' },
+    ],
   },
   {
-    title: 'Wellversed ICN 3 Days Production',
-    description: 'We managed the complete production of the national-level ICN Fitness Competition, covering three days of high-intensity events. Our team handled everything from multi-camera coverage to on-ground coordination, live editing to video submissions within 5 hours and post-production.',
+    title: '💪 Wellversed ICN 3 Days Production',
+    description: 'We managed the complete production of the national-level ICN Fitness Competition, covering three days of high-intensity events with multi-camera coverage and live editing.',
+    links: [
+      { label: 'Day 1 Highlights', url: 'https://www.instagram.com/reel/DNq3Y-Hz5i9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D', type: 'Instagram' },
+      { label: 'Day 2 Highlights', url: 'https://www.instagram.com/reel/DNu7C1PZoOR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D', type: 'Instagram' },
+      { label: 'Day 3 Highlights', url: 'https://www.instagram.com/reel/DNxn9IIZl_8/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D', type: 'Instagram' },
+    ],
   },
   {
-    title: 'ConflktMagazine Fashion Shows',
-    description: 'From concept to curtain call, we executed the entire "Nothing Can Save This" fashion show and Creative Marketing Epoxide\'s "HotMess Express" — handling creative direction, stage design, visual storytelling, full production and post-editing.',
+    title: '👗 ConflktMagazine Fashion Shows',
+    description: 'From concept to curtain call, we executed fashion shows handling creative direction, stage design, visual storytelling, full production and post-editing.',
+    links: [
+      { label: 'Fashion Show Film 1', url: 'https://www.youtube.com/watch?v=XvRnD0FJSbw', type: 'YouTube' },
+      { label: 'Fashion Show Film 2', url: 'https://www.youtube.com/watch?v=7T693LlgKtM', type: 'YouTube' },
+      { label: 'Fashion Show Film 3', url: 'https://www.youtube.com/watch?v=phh57G6fYBI', type: 'YouTube' },
+      { label: 'Behind the Scenes', url: 'https://www.instagram.com/p/DKKZLVfSVVc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D', type: 'Instagram' },
+      { label: 'Runway Reel', url: 'https://www.instagram.com/reel/DMNUSRAxrwe/?utm_source=ig_embed&ig_rid=6d8fa8a9-429d-4b2c-9aae-db41753358ea', type: 'Instagram' },
+      { label: 'Highlights Reel', url: 'https://www.instagram.com/reel/DKkGj-YJeRW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D', type: 'Instagram' },
+    ],
   },
 ];
 
@@ -47,11 +66,26 @@ export default function WorksSection() {
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-display font-bold text-2xl text-foreground mb-4 group-hover:text-primary transition-colors duration-500">
                     {work.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">{work.description}</p>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{work.description}</p>
+                  
+                  <div className="flex flex-wrap gap-3">
+                    {work.links.map((link) => (
+                      <a
+                        key={link.url}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/5 border border-primary/15 text-sm text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-300"
+                      >
+                        {link.type === 'YouTube' ? <Play className="w-3.5 h-3.5" /> : <ExternalLink className="w-3.5 h-3.5" />}
+                        <span className="font-display text-xs tracking-wide">{link.label}</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

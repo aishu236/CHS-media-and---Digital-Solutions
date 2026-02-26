@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Instagram } from 'lucide-react';
 
 export default function FooterSection() {
   return (
@@ -16,9 +17,18 @@ export default function FooterSection() {
           <p className="text-muted-foreground max-w-lg mx-auto mb-8">
             Ready to elevate your brand? Get in touch and let's craft your next big story.
           </p>
+          <a
+            href="https://www.instagram.com/chs_media_digital.solution/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors duration-300 mb-8"
+          >
+            <Instagram className="w-5 h-5" />
+            <span className="font-display text-sm tracking-wider">@chs_media_digital.solution</span>
+          </a>
           <div className="glow-line w-16 mx-auto mb-8" />
           <p className="text-muted-foreground/60 text-sm font-display tracking-wider uppercase">
-            © {new Date().getFullYear()} Craft Media & Marketing
+            © {new Date().getFullYear()} CHS Media & Digital Solutions
           </p>
         </motion.div>
       </div>

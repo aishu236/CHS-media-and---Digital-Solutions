@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Instagram } from 'lucide-react';
 
 const navLinks = [
   { label: 'Works', href: '#works' },
   { label: 'Services', href: '#services' },
+  { label: 'Book Now', href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -27,7 +29,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="#" className="font-display font-bold text-lg tracking-wider text-foreground hover:text-primary transition-colors">
-            CRAFT<span className="text-primary">.</span>
+            CHS<span className="text-primary">.</span>
           </a>
           <div className="flex items-center gap-8">
             {navLinks.map((link) => (
@@ -39,6 +41,14 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://www.instagram.com/chs_media_digital.solution/?hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-300"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </motion.nav>

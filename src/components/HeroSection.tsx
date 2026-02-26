@@ -20,11 +20,13 @@ export default function HeroSection() {
             Creative Digital Agency
           </p>
           <h1 className="font-display font-900 text-5xl md:text-7xl lg:text-8xl leading-[0.9] tracking-tight mb-8">
-            <span className="text-gradient">CRAFT</span>
+            <span className="text-gradient">CHS</span>
             <br />
             <span className="text-foreground">MEDIA &</span>
             <br />
-            <span className="text-foreground">MARKETING</span>
+            <span className="text-foreground">DIGITAL</span>
+            <br />
+            <span className="text-gradient">SOLUTIONS</span>
           </h1>
         </motion.div>
 
@@ -51,10 +53,10 @@ export default function HeroSection() {
             View Works
           </a>
           <a
-            href="#services"
-            className="glass-card px-8 py-3 font-display font-semibold text-sm tracking-wider uppercase text-foreground hover:text-primary transition-all duration-500"
+            href="#contact"
+            className="glass-card px-8 py-3 font-display font-semibold text-sm tracking-wider uppercase bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)] transition-all duration-500"
           >
-            Our Services
+            Book Now
           </a>
         </motion.div>
       </div>
