@@ -1,0 +1,80 @@
+import { motion } from 'framer-motion';
+
+const services = [
+  {
+    category: 'Digital Marketing',
+    items: ['Social Media Management', 'Performance & Meta Ads', 'Influencer Collaborations', 'Content Strategy & Campaign Planning'],
+    icon: '📊',
+  },
+  {
+    category: 'Creative Direction',
+    items: ['Brand Identity & Visual Strategy', 'Campaign Concepts & Storyboarding', 'Art Direction & Set Design'],
+    icon: '🎨',
+  },
+  {
+    category: 'Production & Direction',
+    items: ['Music Videos', 'Commercial & Ad Films', 'Event & Show Coverage', 'Brand Films & Corporate Videos', 'Fashion & Lifestyle Shoots'],
+    icon: '🎬',
+  },
+  {
+    category: 'Post-Production',
+    items: ['Video Editing', 'VFX & Motion Graphics', 'Color Grading', 'Sound Design & Mixing'],
+    icon: '✨',
+  },
+  {
+    category: 'Content Creation',
+    items: ['Reels & Short-Form Content', 'Product Shoots', 'Promotional Visuals', 'Behind-the-Scenes & Documentary'],
+    icon: '📸',
+  },
+  {
+    category: 'Web & Digital Design',
+    items: ['Website Design & Development', 'Portfolio & Landing Pages', 'UI/UX for Creative Projects'],
+    icon: '🖥️',
+  },
+];
+
+export default function ServicesSection() {
+  return (
+    <section id="services" className="section-padding relative">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
+        >
+          <p className="text-primary font-display tracking-[0.2em] uppercase text-xs mb-3">What We Do</p>
+          <h2 className="font-display font-800 text-4xl md:text-5xl text-foreground">Services We Offer</h2>
+          <div className="glow-line w-24 mt-6" />
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.category}
+              initial={{ opacity: 0, y: 40, rotateX: 8 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              className="glass-card-hover p-8 group"
+            >
+              <div className="text-3xl mb-4">{service.icon}</div>
+              <h3 className="font-display font-bold text-lg text-foreground mb-5 group-hover:text-primary transition-colors duration-500">
+                {service.category}
+              </h3>
+              <ul className="space-y-2.5">
+                {service.items.map((item) => (
+                  <li key={item} className="text-muted-foreground text-sm flex items-start gap-2">
+                    <span className="text-primary/60 mt-1 text-xs">▸</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
