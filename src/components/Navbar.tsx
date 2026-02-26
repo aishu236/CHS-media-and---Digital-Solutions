@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { label: 'Works', href: '#works' },
@@ -49,6 +50,7 @@ export default function Navbar() {
             >
               <Instagram className="w-5 h-5" />
             </a>
+            <ThemeToggle />
           </div>
         </div>
       </motion.nav>
