@@ -37,12 +37,26 @@ export default function ContactSection() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbzCFbp23siEMT0jLIePc87z0IENofs72ULN0F01Ot3950E5QdufloVKp79Hu0EiKtEsiA/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch (err) {
+      console.error('Sheet sync error:', err);
+    }
     const whatsappMessage = `Hi! I'm ${formData.name}. I'm interested in ${formData.service} for my ${formData.businessType} business. ${formData.message}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
     setSubmitted(true);
+    setLoading(false);
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -166,7 +180,7 @@ export default function ContactSection() {
             whileTap={{ scale: 0.98 }}
             className="w-full py-4 rounded-lg bg-primary text-primary-foreground font-display font-bold tracking-wider uppercase text-sm hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)] transition-all duration-500"
           >
-            {submitted ? '✓ Redirecting to WhatsApp...' : 'Book Now →'}
+            {loading ? 'Sending...' : submitted ? '✓ Redirecting to WhatsApp...' : 'Book Now →'}
           </motion.button>
         </motion.form>
       </div>
