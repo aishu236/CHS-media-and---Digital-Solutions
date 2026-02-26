@@ -53,7 +53,7 @@ export default function ContactSection() {
       console.error('Sheet sync error:', err);
     }
     const whatsappMessage = `Hi! I'm ${formData.name}. I'm interested in ${formData.service} for my ${formData.businessType} business. ${formData.message}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/919542551647?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
     setSubmitted(true);
     setLoading(false);
