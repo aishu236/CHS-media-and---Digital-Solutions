@@ -36,7 +36,6 @@ export default function ContactSection() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -60,9 +59,10 @@ export default function ContactSection() {
     setTimeout(() => setSubmitted(false), 3000);
   };
 
+  const inputClass = "w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all";
+
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
-      {/* 3D background for contact */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">
         <Scene3DContact />
       </div>
@@ -72,7 +72,7 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 text-center"
         >
           <p className="text-primary font-display tracking-[0.2em] uppercase text-xs mb-3">Get Started</p>
@@ -85,100 +85,50 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass-card p-8 md:p-12 space-y-6"
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-card border border-border rounded-2xl p-8 md:p-12 space-y-6 shadow-lg"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Name */}
             <div className="space-y-2">
               <label className="font-display text-sm text-muted-foreground tracking-wider uppercase flex items-center gap-2">
                 <User className="w-4 h-4 text-primary" /> Your Name
               </label>
-              <input
-                type="text"
-                required
-                maxLength={100}
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="John Doe"
-                className="w-full bg-secondary/50 border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all"
-              />
+              <input type="text" required maxLength={100} value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="John Doe" className={inputClass} />
             </div>
-
-            {/* Phone */}
             <div className="space-y-2">
               <label className="font-display text-sm text-muted-foreground tracking-wider uppercase flex items-center gap-2">
                 <Phone className="w-4 h-4 text-primary" /> Phone Number
               </label>
-              <input
-                type="tel"
-                required
-                maxLength={15}
-                pattern="[0-9+\-\s()]+"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+91 98765 43210"
-                className="w-full bg-secondary/50 border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all"
-              />
+              <input type="tel" required maxLength={15} pattern="[0-9+\-\s()]+" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="+91 98765 43210" className={inputClass} />
             </div>
-
-            {/* Service Type */}
             <div className="space-y-2">
               <label className="font-display text-sm text-muted-foreground tracking-wider uppercase flex items-center gap-2">
                 <Send className="w-4 h-4 text-primary" /> Service Needed
               </label>
-              <select
-                required
-                value={formData.service}
-                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full bg-secondary/50 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all appearance-none"
-              >
+              <select required value={formData.service} onChange={(e) => setFormData({ ...formData, service: e.target.value })} className={`${inputClass} appearance-none`}>
                 <option value="" disabled>Select a service</option>
-                {serviceTypes.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
+                {serviceTypes.map((s) => (<option key={s} value={s}>{s}</option>))}
               </select>
             </div>
-
-            {/* Business Type */}
             <div className="space-y-2">
               <label className="font-display text-sm text-muted-foreground tracking-wider uppercase flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-primary" /> Business Type
               </label>
-              <select
-                required
-                value={formData.businessType}
-                onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-                className="w-full bg-secondary/50 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all appearance-none"
-              >
+              <select required value={formData.businessType} onChange={(e) => setFormData({ ...formData, businessType: e.target.value })} className={`${inputClass} appearance-none`}>
                 <option value="" disabled>Select business type</option>
-                {businessTypes.map((b) => (
-                  <option key={b} value={b}>{b}</option>
-                ))}
+                {businessTypes.map((b) => (<option key={b} value={b}>{b}</option>))}
               </select>
             </div>
           </div>
-
-          {/* Message */}
           <div className="space-y-2">
-            <label className="font-display text-sm text-muted-foreground tracking-wider uppercase">
-              Tell us more (optional)
-            </label>
-            <textarea
-              maxLength={500}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Brief about your project..."
-              rows={3}
-              className="w-full bg-secondary/50 border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all resize-none"
-            />
+            <label className="font-display text-sm text-muted-foreground tracking-wider uppercase">Tell us more (optional)</label>
+            <textarea maxLength={500} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Brief about your project..." rows={3} className={`${inputClass} resize-none`} />
           </div>
-
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full py-4 rounded-lg bg-primary text-primary-foreground font-display font-bold tracking-wider uppercase text-sm hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)] transition-all duration-500"
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            className="w-full py-4 rounded-full bg-foreground text-background font-display font-bold tracking-wider uppercase text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-500"
           >
             {loading ? 'Sending...' : submitted ? '✓ Redirecting to WhatsApp...' : 'Book Now →'}
           </motion.button>

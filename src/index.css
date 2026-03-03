@@ -6,52 +6,52 @@
 
 @layer base {
   :root {
-    --background: 220 20% 4%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
 
-    --card: 220 18% 8%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 220 18% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 38 100% 55%;
-    --primary-foreground: 220 20% 4%;
+    --primary: 38 90% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 14%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 25%;
 
-    --muted: 220 15% 12%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 200 80% 55%;
-    --accent-foreground: 220 20% 4%;
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 16%;
-    --input: 220 15% 16%;
-    --ring: 38 100% 55%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 38 90% 50%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 220 18% 6%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 38 100% 55%;
-    --sidebar-primary-foreground: 220 20% 4%;
-    --sidebar-accent: 220 15% 12%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 220 15% 16%;
-    --sidebar-ring: 38 100% 55%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 38 90% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 38 90% 50%;
 
     /* Custom tokens */
-    --glass-bg: 220 20% 10% / 0.6;
-    --glass-border: 220 15% 25% / 0.3;
-    --glow-primary: 38 100% 55%;
-    --glow-accent: 200 80% 55%;
-    --gradient-hero: linear-gradient(135deg, hsl(38 100% 55% / 0.15), hsl(200 80% 55% / 0.08));
-    --gradient-card: linear-gradient(145deg, hsl(220 18% 10% / 0.8), hsl(220 18% 6% / 0.9));
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 0% / 0.06;
+    --glow-primary: 38 90% 50%;
+    --glow-accent: 0 0% 20%;
+    --gradient-hero: linear-gradient(135deg, hsl(38 90% 50% / 0.06), hsl(0 0% 90% / 0.3));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(0 0% 97% / 0.95));
   }
 }
 
@@ -81,6 +81,7 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid hsl(var(--glass-border));
     border-radius: var(--radius);
+    box-shadow: 0 1px 3px hsl(0 0% 0% / 0.04);
   }
 
   .glass-card-hover {
@@ -88,25 +89,26 @@
   }
 
   .glass-card-hover:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
-    border-color: hsl(var(--primary) / 0.4);
+    transform: translateY(-6px);
+    border-color: hsl(var(--primary) / 0.3);
     box-shadow:
-      0 25px 50px -12px hsl(var(--primary) / 0.15),
-      0 0 40px hsl(var(--primary) / 0.05);
+      0 20px 40px -12px hsl(0 0% 0% / 0.08),
+      0 0 0 1px hsl(var(--primary) / 0.1);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(38 80% 40%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .glow-line {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.7), transparent);
+    height: 3px;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.3), transparent);
     animation: glow-line-expand 0.8s ease-out forwards;
     transform-origin: left;
+    border-radius: 2px;
   }
 
   @keyframes glow-line-expand {
@@ -125,6 +127,27 @@
   .floating-shape-delayed {
     animation: float 8s ease-in-out infinite 2s;
   }
+
+  /* Text reveal animation like adko.in */
+  .text-reveal {
+    overflow: hidden;
+  }
+
+  .text-reveal > * {
+    animation: text-reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes text-reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @layer utilities {
@@ -141,5 +164,14 @@
   @keyframes slide-up {
     from { opacity: 0; transform: translateY(60px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
   }
 }

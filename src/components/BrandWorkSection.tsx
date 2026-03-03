@@ -14,19 +14,13 @@ const brands = [
   { name: 'Namaste Grocery', type: 'Social Media & Content', link: 'https://www.instagram.com/reel/C7k6ZjzM3Am/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12 },
-  },
-};
-
 const cardVariants = {
-  hidden: { opacity: 0, y: 50, rotateX: 10 },
-  visible: {
-    opacity: 1, y: 0, rotateX: 0,
-    transition: { duration: 0.7, ease: 'easeOut' },
-  },
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] },
+  }),
 };
 
 export default function BrandWorkSection() {
@@ -37,7 +31,7 @@ export default function BrandWorkSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <p className="text-primary font-display tracking-[0.2em] uppercase text-xs mb-3">Portfolio</p>
@@ -46,31 +40,28 @@ export default function BrandWorkSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="mb-14 glass-card p-6 rounded-xl overflow-hidden"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-14 bg-card border border-border p-6 rounded-xl overflow-hidden"
         >
-          <img src={brandLogos} alt="Brands we've worked with — CHS Media clients in Hyderabad" className="w-full h-auto object-contain opacity-90" loading="lazy" />
+          <img src={brandLogos} alt="Brands we've worked with — CHS Media clients in Hyderabad" className="w-full h-auto object-contain" loading="lazy" />
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {brands.map((brand) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {brands.map((brand, i) => (
             <motion.a
               key={brand.name}
               href={brand.link}
               target={brand.link.startsWith('http') ? '_blank' : undefined}
               rel={brand.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
               variants={cardVariants}
               className="glass-card-hover group p-8 flex flex-col justify-between min-h-[220px] cursor-pointer"
-              style={{ perspective: '1000px' }}
             >
               <div>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-500">
@@ -85,7 +76,7 @@ export default function BrandWorkSection() {
               <p className="text-muted-foreground text-sm mt-4">{brand.type}</p>
             </motion.a>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

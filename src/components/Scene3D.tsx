@@ -1,119 +1,85 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, MeshDistortMaterial, MeshWobbleMaterial, Sparkles } from '@react-three/drei';
-import { useRef, Suspense, useMemo } from 'react';
+import { Float, MeshDistortMaterial } from '@react-three/drei';
+import { useRef, Suspense } from 'react';
 import * as THREE from 'three';
 
-function FloatingOctahedron() {
+function SoftSphere() {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.15;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.2;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
-      <mesh ref={meshRef} scale={1.8}>
-        <octahedronGeometry args={[1, 0]} />
-        <MeshDistortMaterial
-          color="#d4940a"
-          roughness={0.2}
-          metalness={0.9}
-          distort={0.2}
-          speed={3}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function FloatingTorusKnot() {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.z = state.clock.elapsedTime * 0.1;
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.3;
+      meshRef.current.rotation.x = state.clock.elapsedTime * 0.08;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.12;
     }
   });
 
   return (
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={1}>
-      <mesh ref={meshRef} position={[3.5, -1, -2]} scale={0.6}>
-        <torusKnotGeometry args={[1, 0.35, 128, 16, 2, 3]} />
-        <MeshWobbleMaterial
-          color="#3b9dd6"
-          roughness={0.3}
-          metalness={0.8}
-          transparent
-          opacity={0.5}
-          factor={0.3}
+      <mesh ref={meshRef} scale={2.2}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <MeshDistortMaterial
+          color="#e8a030"
+          roughness={0.6}
+          metalness={0.1}
+          distort={0.15}
           speed={2}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function FloatingIcosahedron() {
-  return (
-    <Float speed={1} rotationIntensity={0.2} floatIntensity={2}>
-      <mesh position={[-3.5, 1.5, -3]} scale={0.5}>
-        <icosahedronGeometry args={[1, 1]} />
-        <meshStandardMaterial
-          color="#d4940a"
-          roughness={0.4}
-          metalness={0.7}
           transparent
-          opacity={0.4}
-          wireframe
+          opacity={0.12}
         />
       </mesh>
     </Float>
   );
 }
 
-function FloatingDodecahedron() {
+function SoftTorus() {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.25;
-      meshRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.15) * 0.4;
+      meshRef.current.rotation.z = state.clock.elapsedTime * 0.1;
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.3;
     }
   });
 
   return (
-    <Float speed={1.8} rotationIntensity={0.4} floatIntensity={1.2}>
-      <mesh ref={meshRef} position={[-2, -2, -1]} scale={0.7}>
-        <dodecahedronGeometry args={[1, 0]} />
-        <MeshDistortMaterial
-          color="#d4940a"
-          roughness={0.5}
-          metalness={0.6}
-          distort={0.08}
-          speed={2}
+    <Float speed={1} rotationIntensity={0.2} floatIntensity={0.8}>
+      <mesh ref={meshRef} position={[3, -1.5, -3]} scale={0.8}>
+        <torusGeometry args={[1, 0.4, 32, 64]} />
+        <meshStandardMaterial
+          color="#d4d4d4"
+          roughness={0.8}
+          metalness={0.05}
           transparent
-          opacity={0.35}
-          wireframe
+          opacity={0.15}
         />
       </mesh>
     </Float>
   );
 }
 
-function ParticleField() {
+function SoftRing() {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.15;
+    }
+  });
+
   return (
-    <Sparkles
-      count={80}
-      scale={12}
-      size={1.5}
-      speed={0.4}
-      color="#d4940a"
-      opacity={0.3}
-    />
+    <Float speed={1.2} rotationIntensity={0.15} floatIntensity={1.2}>
+      <mesh ref={meshRef} position={[-3, 1, -2]} scale={0.6}>
+        <dodecahedronGeometry args={[1, 0]} />
+        <meshStandardMaterial
+          color="#e8a030"
+          roughness={0.7}
+          metalness={0.05}
+          transparent
+          opacity={0.1}
+          wireframe
+        />
+      </mesh>
+    </Float>
   );
 }
 
@@ -129,7 +95,7 @@ function MouseFollowLight() {
     }
   });
 
-  return <pointLight ref={light} intensity={0.6} color="#d4940a" distance={8} />;
+  return <pointLight ref={light} intensity={0.3} color="#e8a030" distance={8} />;
 }
 
 export default function Scene3D() {
@@ -141,15 +107,12 @@ export default function Scene3D() {
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={0.2} />
-          <directionalLight position={[5, 5, 5]} intensity={1} color="#d4940a" />
-          <pointLight position={[-5, -3, 3]} intensity={0.5} color="#3b9dd6" />
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[5, 5, 5]} intensity={0.5} color="#ffffff" />
           <MouseFollowLight />
-          <FloatingOctahedron />
-          <FloatingTorusKnot />
-          <FloatingIcosahedron />
-          <FloatingDodecahedron />
-          <ParticleField />
+          <SoftSphere />
+          <SoftTorus />
+          <SoftRing />
         </Suspense>
       </Canvas>
     </div>
