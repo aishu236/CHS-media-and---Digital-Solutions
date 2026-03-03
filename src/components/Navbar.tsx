@@ -22,13 +22,13 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'glass-card py-3' : 'py-5'
+          scrolled ? 'bg-background/90 backdrop-blur-md shadow-sm py-3' : 'py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="font-display font-bold text-lg tracking-wider text-foreground hover:text-primary transition-colors">
+          <a href="#" className="font-display font-bold text-xl tracking-wider text-foreground hover:text-primary transition-colors">
             CHS<span className="text-primary">.</span>
           </a>
           <div className="flex items-center gap-8">
@@ -36,7 +36,7 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="font-display text-sm tracking-wider uppercase text-muted-foreground hover:text-primary transition-colors duration-300"
+                className="font-display text-sm tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -45,7 +45,7 @@ export default function Navbar() {
               href="https://www.instagram.com/chs_media_digital.solution/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors duration-300"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
             >
               <Instagram className="w-5 h-5" />
             </a>

@@ -34,6 +34,15 @@ const externalLinks = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
+
 export default function OtherWorksSection() {
   return (
     <section className="section-padding relative">
@@ -42,7 +51,7 @@ export default function OtherWorksSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <p className="text-primary font-display tracking-[0.2em] uppercase text-xs mb-3">More Work</p>
@@ -57,15 +66,16 @@ export default function OtherWorksSection() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              variants={cardVariants}
               className="glass-card-hover p-6 group flex flex-col justify-between min-h-[180px]"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-display tracking-wider uppercase text-primary/70 bg-primary/10 px-3 py-1 rounded-full">
+                  <span className="text-xs font-display tracking-wider uppercase text-primary bg-primary/10 px-3 py-1 rounded-full">
                     {link.type}
                   </span>
                   <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-300" />

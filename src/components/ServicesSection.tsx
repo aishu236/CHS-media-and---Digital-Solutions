@@ -33,6 +33,15 @@ const services = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
+
 export default function ServicesSection() {
   return (
     <section id="services" className="section-padding relative">
@@ -41,7 +50,7 @@ export default function ServicesSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <p className="text-primary font-display tracking-[0.2em] uppercase text-xs mb-3">What We Do</p>
@@ -53,10 +62,11 @@ export default function ServicesSection() {
           {services.map((service, i) => (
             <motion.div
               key={service.category}
-              initial={{ opacity: 0, y: 40, rotateX: 8 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
+              variants={cardVariants}
               className="glass-card-hover p-8 group"
             >
               <div className="text-3xl mb-4">{service.icon}</div>
@@ -67,13 +77,13 @@ export default function ServicesSection() {
                 {service.items.map((item, idx) => (
                   <motion.li
                     key={item}
-                    initial={{ opacity: 0, x: -10 }}
+                    initial={{ opacity: 0, x: -15 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.08 + idx * 0.06, ease: 'easeOut' }}
+                    transition={{ duration: 0.5, delay: i * 0.1 + idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     className="text-muted-foreground text-sm flex items-start gap-2"
                   >
-                    <span className="text-primary/60 mt-1 text-xs">▸</span>
+                    <span className="text-primary mt-1 text-xs">▸</span>
                     {item}
                   </motion.li>
                 ))}

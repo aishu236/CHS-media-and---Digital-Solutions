@@ -34,6 +34,15 @@ const works = [
   },
 ];
 
+const workVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
+
 export default function WorksSection() {
   return (
     <section id="works" className="section-padding relative">
@@ -42,7 +51,7 @@ export default function WorksSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <p className="text-primary font-display tracking-[0.2em] uppercase text-xs mb-3">Our Work</p>
@@ -54,10 +63,11 @@ export default function WorksSection() {
           {works.map((work, i) => (
             <motion.div
               key={work.title}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.1 }}
+              variants={workVariants}
               className="glass-card-hover p-8 md:p-12 group"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -79,7 +89,7 @@ export default function WorksSection() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/5 border border-primary/15 text-sm text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border text-sm text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
                       >
                         {link.type === 'YouTube' ? <Play className="w-3.5 h-3.5" /> : <ExternalLink className="w-3.5 h-3.5" />}
                         <span className="font-display text-xs tracking-wide">{link.label}</span>
