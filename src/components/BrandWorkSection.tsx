@@ -52,7 +52,7 @@ export default function BrandWorkSection() {
           transition={{ duration: 1 }}
           className="mb-14 glass-card p-6 rounded-xl overflow-hidden"
         >
-          <img src={brandLogos} alt="Brands we've worked with" className="w-full h-auto object-contain opacity-90" />
+          <img src={brandLogos} alt="Brands we've worked with — CHS Media clients in Hyderabad" className="w-full h-auto object-contain opacity-90" loading="lazy" />
         </motion.div>
 
         <motion.div
