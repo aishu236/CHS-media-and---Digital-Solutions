@@ -64,11 +64,18 @@ export default function ServicesSection() {
                 {service.category}
               </h3>
               <ul className="space-y-2.5">
-                {service.items.map((item) => (
-                  <li key={item} className="text-muted-foreground text-sm flex items-start gap-2">
+                {service.items.map((item, idx) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 + idx * 0.06, ease: 'easeOut' }}
+                    className="text-muted-foreground text-sm flex items-start gap-2"
+                  >
                     <span className="text-primary/60 mt-1 text-xs">▸</span>
                     {item}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
